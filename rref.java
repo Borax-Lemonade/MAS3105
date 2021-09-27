@@ -17,7 +17,12 @@ public class rref {
 
         double[][] matrix = new double[numRows][numColumns];
 
-        populateMatrix(rand, numRows, numColumns, matrix);
+        //populateMatrix(rand, numRows, numColumns, matrix);
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numColumns; j++) {
+                matrix[i][j] = in.nextInt();
+            }
+        }
         printMatrix(numRows, numColumns, matrix);
 
         int current = 0;
@@ -37,20 +42,21 @@ public class rref {
                         break;
                     }
                 }
-
             }
             if (i != k)
                 matrix = rowSwap(matrix, i, k, numRows, numColumns);
-
-            if(matrix[k][current] != 0){
-                matrix = rowScale(matrix, k, numRows, numColumns, (1/matrix[k][current]));
-            }
-            for(i = 0; i < numRows; i++){
-                if(i != k){
-                    matrix = rowAddScale(matrix, k, i, numRows, numColumns, ((-1) * matrix[i][current]));
+            if (current < numColumns) {
+                if (matrix[k][current] != 0) {
+                    matrix = rowScale(matrix, k, numRows, numColumns, (1 / matrix[k][current]));
                 }
+                for (i = 0; i < numRows; i++) {
+                    if (i != k) {
+                        matrix = rowAddScale(matrix, k, i, numRows, numColumns, ((-1) * matrix[i][current]));
+                    }
+                }
+                current++;
             }
-            current++;
+            //printMatrix(numRows, numColumns, matrix);
         }
         System.out.println();
         printMatrix(numRows, numColumns, matrix);
