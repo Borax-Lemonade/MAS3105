@@ -17,12 +17,21 @@ public class rref {
 
         double[][] matrix = new double[numRows][numColumns];
 
+<<<<<<< HEAD
         populateMatrix(rand, numRows, numColumns, matrix);
         /*for (int i = 0; i < numRows; i++) {
             for (int j = 0; j < numColumns; j++) {
                 matrix[i][j] = in.nextInt();
             }
         }*/
+=======
+        //populateMatrix(rand, numRows, numColumns, matrix);
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numColumns; j++) {
+                matrix[i][j] = in.nextInt();
+            }
+        }
+>>>>>>> 958e57479125c7624b2cc20ebf552b8365ffec20
         printMatrix(numRows, numColumns, matrix);
 
         int current = 0;
@@ -47,19 +56,30 @@ public class rref {
             if (i != k)
                 matrix = rowSwap(matrix, i, k, numRows, numColumns);
             if (current < numColumns) {
+<<<<<<< HEAD
                 curVal = matrix[k][current];
                 if (matrix[k][current] != 0) {
                     matrix = rowScale(matrix, k, numRows, numColumns, (1 / curVal));
+=======
+                if (matrix[k][current] != 0) {
+                    matrix = rowScale(matrix, k, numRows, numColumns, (1 / matrix[k][current]));
+>>>>>>> 958e57479125c7624b2cc20ebf552b8365ffec20
                 }
                 for (i = 0; i < numRows; i++) {
                     if (i != k) {
                         matrix = rowAddScale(matrix, k, i, numRows, numColumns, ((-1) * matrix[i][current]));
                     }
                 }
+<<<<<<< HEAD
                 //matrix = rowScale(matrix, k, numRows, numColumns, (curVal / 1)); //for not rref
                 current++;
             }
             printMatrix(numRows, numColumns, matrix);
+=======
+                current++;
+            }
+            //printMatrix(numRows, numColumns, matrix);
+>>>>>>> 958e57479125c7624b2cc20ebf552b8365ffec20
         }
         System.out.println();
         printMatrix(numRows, numColumns, matrix);
