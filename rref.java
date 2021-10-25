@@ -17,16 +17,17 @@ public class rref {
 
         double[][] matrix = new double[numRows][numColumns];
 
-        //populateMatrix(rand, numRows, numColumns, matrix);
-        for (int i = 0; i < numRows; i++) {
+        populateMatrix(rand, numRows, numColumns, matrix);
+        /*for (int i = 0; i < numRows; i++) {
             for (int j = 0; j < numColumns; j++) {
                 matrix[i][j] = in.nextInt();
             }
-        }
+        }*/
         printMatrix(numRows, numColumns, matrix);
 
         int current = 0;
         int i;
+        double curVal;
 
         for(int k = 0; k < numRows; k++){
             if(numColumns <= current){
@@ -46,17 +47,19 @@ public class rref {
             if (i != k)
                 matrix = rowSwap(matrix, i, k, numRows, numColumns);
             if (current < numColumns) {
+                curVal = matrix[k][current];
                 if (matrix[k][current] != 0) {
-                    matrix = rowScale(matrix, k, numRows, numColumns, (1 / matrix[k][current]));
+                    matrix = rowScale(matrix, k, numRows, numColumns, (1 / curVal));
                 }
                 for (i = 0; i < numRows; i++) {
                     if (i != k) {
                         matrix = rowAddScale(matrix, k, i, numRows, numColumns, ((-1) * matrix[i][current]));
                     }
                 }
+                //matrix = rowScale(matrix, k, numRows, numColumns, (curVal / 1)); //for not rref
                 current++;
             }
-            //printMatrix(numRows, numColumns, matrix);
+            printMatrix(numRows, numColumns, matrix);
         }
         System.out.println();
         printMatrix(numRows, numColumns, matrix);
@@ -76,7 +79,7 @@ public class rref {
                 if (matrix[i][j] == -0) {
                     Math.abs(matrix[i][j]);
                 }
-                System.out.print(Math.round(matrix[i][j]) + " ");
+                System.out.printf("%5.2f ", matrix[i][j]);
             }
             System.out.println();
         }
